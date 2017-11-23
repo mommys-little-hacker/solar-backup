@@ -21,9 +21,9 @@ createDatabaseBackup() {
         mysqldump_opts="--single-transaction --skip-lock-tables"
     fi
 
-    if [[ ${mysqldump_user-""} != "" ]]; then mysqldump_user="-u${mysqldump_user}"; fi
-    if [[ ${mysqldump_pass-""} != "" ]]; then mysqldump_pass="-p${mysqldump_pass}"; fi
-    if [[ ${mysqldump_host-""} != "" ]]; then mysqldump_host="-h${mysqldump_host}"; fi
+    if [[ ${mysqldump_user-""} != "" ]]; then mysqldump_user="${mysqldump_user/#/'-u'}"; fi
+    if [[ ${mysqldump_pass-""} != "" ]]; then mysqldump_pass="${mysqldump_pass/#/'-p'}"; fi
+    if [[ ${mysqldump_host-""} != "" ]]; then mysqldump_host="${mysqldump_host/#/'-h'}"; fi
 
     mysqldump_cmd="mysqldump $mysqldump_opts
         ${mysqldump_user-} ${mysqldump_pass-} ${mysqldump_host-} ${mysqldump_db-}"
