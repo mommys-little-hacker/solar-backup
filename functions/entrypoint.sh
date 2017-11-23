@@ -32,6 +32,10 @@ entrypoint() {
                 restoreBackup "$subject"
             fi ;;
 
+        --version|-V )
+            cat data/version.txt
+	    break ;;
+
         * )
             cat data/badargs.txt
             exit $E_BAD_ARGS ;;
