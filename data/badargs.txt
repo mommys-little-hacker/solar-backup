@@ -1,0 +1,1 @@
+Usage: solar-backup [ --make | --list ]
