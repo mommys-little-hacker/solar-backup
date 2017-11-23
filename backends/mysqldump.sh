@@ -26,7 +26,7 @@ createDatabaseBackup() {
     if [[ ${mysqldump_host-""} != "" ]]; then mysqldump_host="-h${mysqldump_host}"; fi
 
     mysqldump_cmd="mysqldump $mysqldump_opts
-        $mysqldump_user $mysqldump_pass $mysqldump_host $mysqldump_db"
+        ${mysqldump_user-} ${mysqldump_pass-} ${mysqldump_host-} ${mysqldump_db-}"
 
     archive_name="mysql_${db}.${date_suffix}.sql.gz"
     source "backends/${files_backend}.sh"
