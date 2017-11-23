@@ -10,8 +10,23 @@ createDatabaseBackup() {
     fi
 
     db="$1"
-    mysqldump_cmd="mysqldump --single-transaction -u${mysqldump_user}
-    -p${mysqldump_pass} ${db-}"
+    mysqldump_opts="--single-transaction --skip-lock-tables"
+
+    if [[ $db = "ALL" ]]
+    then
+        mysqldump_db=""
+        mysqldump_opts="--single-transaction --skip-lock-tables -A"
+    else
+        mysqldump_db="$db"
+        mysqldump_opts="--single-transaction --skip-lock-tables"
+    fi
+
+    if [[ ${mysqldump_user-""} != "" ]]; then mysqldump_user="-u${mysqldump_user}"; fi
+    if [[ ${mysqldump_pass-""} != "" ]]; then mysqldump_pass="-p${mysqldump_pass}"; fi
+    if [[ ${mysqldump_host-""} != "" ]]; then mysqldump_host="-h${mysqldump_host}"; fi
+
+    mysqldump_cmd="mysqldump $mysqldump_opts
+        $mysqldump_user $mysqldump_pass $mysqldump_host $mysqldump_db"
 
     archive_name="mysql_${db}.${date_suffix}.sql.gz"
     source "backends/${files_backend}.sh"
