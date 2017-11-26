@@ -10,11 +10,6 @@ set -u -o pipefail
 # Environment setup
 ###
 
-my_dir="/opt/solar-backup/"
-my_pid=$$
-
-cd $my_dir
-
 # Load application global vars, consts and functions
 for conf_dir in data functions
 do
