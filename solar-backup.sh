@@ -1,6 +1,7 @@
 #!/bin/bash
 # Author: Maxim Vasilev <admin@qwertys.ru>
 # Description: Creates backup of a project. Main executable.
+# This specific file loads configuration
 
 # Raise an error in case of unbound var
 set -u -o pipefail
@@ -23,13 +24,13 @@ do
     done
 done
 
-# Load global configuration
-source "$conf_file_global" || exit ${E_NOT_FOUND-20}
-
-# Load per user conf
-if [ -r "$conf_file_user" ]
+if [[ ${CONFFILE-""} != "" ]]
 then
-    source "$conf_file_user"
+    source $CONFFILE
+else
+    # Load global configuration and override it's values with user config
+    source "$conf_file_global" || exit ${E_NOT_FOUND-20}
+    if [ -r "$conf_file_user" ]; then source "$conf_file_user"; fi
 fi
 
 ###
