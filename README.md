@@ -13,4 +13,4 @@ $HOME/.solar-backup
 Example configuration file can be found in
 INSTALL_DIR/data/solar-backup.conf
 
-This piece of sowtware is public domain.
+This piece of software is public domain.
