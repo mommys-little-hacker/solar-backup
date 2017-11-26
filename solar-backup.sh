@@ -24,9 +24,9 @@ do
     done
 done
 
-if [[ ${CONFFILE-""} != "" ]]
+if [[ ${CONFFILE-""} != "" && -r ${CONFFILE} ]]
 then
-    source $CONFFILE || exit ${E_NOT_FOUND-20}
+    source $CONFFILE
 else
     # Load global configuration and override it's values with user config
     source "$conf_file_global" || exit ${E_NOT_FOUND-20}
