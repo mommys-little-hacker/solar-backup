@@ -1,10 +1,11 @@
-conf_file_global="../../../etc/solar-backup/solar-backup.conf"
+conf_file_global="/etc/solar-backup/solar-backup.conf"
 conf_file_user="${HOME}/.solar-backup"
 
+my_pid=$$
 key=`echo $USER $@ | md5sum | cut -d' ' -f1`
 lockfile="/tmp/solar-backup.${key}.lock"
 
-hooks_dir="../../../etc/solar-backup/hooks/"
+hooks_dir="/etc/solar-backup/hooks/"
 
 tmpdir="/tmp"
 cron_tmp_dir="${tmpdir}/crontab.bak"

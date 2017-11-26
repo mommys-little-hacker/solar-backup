@@ -1,1 +1,1 @@
-Usage: solar-backup [ --make | --list ]
+Usage: solar-backup [ --make | --list | --version ]
