@@ -26,7 +26,7 @@ done
 
 if [[ ${CONFFILE-""} != "" ]]
 then
-    source $CONFFILE
+    source $CONFFILE || exit ${E_NOT_FOUND-20}
 else
     # Load global configuration and override it's values with user config
     source "$conf_file_global" || exit ${E_NOT_FOUND-20}
