@@ -3,7 +3,7 @@
 entrypoint() {
     if [[ $# = 0 ]]
     then
-        cat data/badargs.txt
+        cat ${dir_app%%/}/data/badargs.txt
         exit $E_BAD_ARGS
     fi
 
