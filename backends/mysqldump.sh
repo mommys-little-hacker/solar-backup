@@ -2,9 +2,8 @@
 # DB backup - MySQL backend
 
 createDatabaseBackup() {
-    if [ -r backends/${files_backend}.sh ]
-    then :
-    else
+    if [[ ! -r ${app_dir%%/}/backends/${files_backend}.sh ]]
+    then
         logEvent "$MSG_NO_BACKEND"
         return 1
     fi
@@ -29,7 +28,7 @@ createDatabaseBackup() {
         ${_mysqldump_user-} ${_mysqldump_pass-} ${_mysqldump_host-} ${mysqldump_db-}"
 
     archive_name="mysql_${db}.${date_suffix}.sql.gz"
-    source "backends/${files_backend}.sh"
+    source "${app_dir%%/}/backends/${files_backend}.sh"
 
     $mysqldump_cmd | $stdin_conn
 

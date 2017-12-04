@@ -2,7 +2,7 @@
 # This function manages database backup
 
 backupDB() {
-    if [ "$backup_db" != "true" ] 
+    if [[ "$backup_db" != "true" ]]
     then
         logEvent "$MSG_DB_SKIP"
         return 0
