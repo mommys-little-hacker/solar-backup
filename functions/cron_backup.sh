@@ -28,7 +28,7 @@ backupCron() {
     if [ -n "$files_backend" ]
     then
         archive_name="cron.${date_suffix}.tar.gz"
-        source "backends/${files_backend}.sh" || return 1
+        source "${app_dir%%/}/backends/${files_backend}.sh" || return 1
 
         tar -cz "${cron_tmp_dir}" > "/tmp/${archive_name}" 2> /dev/null
         uploadFile "/tmp/${archive_name}" || return 1

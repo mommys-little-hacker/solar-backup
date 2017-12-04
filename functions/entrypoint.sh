@@ -3,7 +3,7 @@
 entrypoint() {
     if [[ $# = 0 ]]
     then
-        cat data/badargs.txt
+        cat ${app_dir%%/}/data/badargs.txt
         exit $E_BAD_ARGS
     fi
 
@@ -23,11 +23,11 @@ entrypoint() {
             break ;;
 
         --version|-V )
-            cat data/version.txt
+            cat ${app_dir%%/}/data/version.txt
             break ;;
 
         * )
-            cat data/badargs.txt
+            cat ${app_dir%%/}/data/badargs.txt
             exit $E_BAD_ARGS ;;
         esac
 
