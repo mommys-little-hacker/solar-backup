@@ -8,7 +8,7 @@ listBackups() {
     then
         runHook "${hooks_pre_start-}" || return 1
 
-        source ${app_dir%%/}backends/${files_backend}.sh
+        source ${app_dir%%/}/backends/${files_backend}.sh
         listDir || exit_status=1
 
         runHook "${hooks_post_end-}" || return 1
