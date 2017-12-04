@@ -23,11 +23,11 @@ entrypoint() {
             break ;;
 
         --version|-V )
-            cat ${INSTALLDIR-/opt/solar-backup/}data/version.txt
+            cat ${app_dir%%/}/data/version.txt
             break ;;
 
         * )
-            cat ${INSTALLDIR-/opt/solar-backup/}data/badargs.txt
+            cat ${app_dir%%/}/data/badargs.txt
             exit $E_BAD_ARGS ;;
         esac
 
