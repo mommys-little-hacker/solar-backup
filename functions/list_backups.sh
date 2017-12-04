@@ -4,21 +4,14 @@
 listBackups() {
     exit_status=0
 
-    if [ -r backends/"${files_backend-}".sh ]
+    if [[ -r ${app_dir%%/}/backends/"${files_backend-}".sh ]]
     then
-        source backends/${files_backend}.sh
+        runHook "${hooks_pre_start-}" || return 1
 
-        if [ -n "${hooks_pre_start-}" ]
-        then
-            runHook "$hooks_pre_start" || return 1
-        fi
-
+        source ${app_dir%%/}backends/${files_backend}.sh
         listDir || exit_status=1
 
-        if [ -n "${hooks_post_end-}" ]
-        then
-            runHook "$hooks_post_end" || return 1
-        fi
+        runHook "${hooks_post_end-}" || return 1
     else
         logEvent "$MSG_NO_BACKEND"
         exit_status=1

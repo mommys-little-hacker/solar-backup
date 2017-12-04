@@ -12,11 +12,11 @@ backupDB() {
 
     logEvent "$MSG_DB_START"
 
-    if [ -n "{$db_backend-}" ]
+    if [[ -n "{$db_backend-}" ]]
     then
         for db in ${db_dbs[@]}
         do
-            source "backends/${db_backend}.sh" || return 1
+            source "${app_dir%%/}/backends/${db_backend}.sh" || return 1
             createDatabaseBackup "$db" || return 1
         done
     else

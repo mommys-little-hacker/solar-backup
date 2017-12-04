@@ -10,10 +10,12 @@ set -u -o pipefail
 # Environment setup
 ###
 
+app_dir=${INSTALLDIR-"/opt/solar-backup"}
+
 # Load application global vars, consts and functions
 for conf_dir in data functions
 do
-    for conf_file in "${INSTALLDIR-"/opt/solar-backup"}/${conf_dir}"/*.sh
+    for conf_file in "${app_dir%%/}/${conf_dir}"/*.sh
     do
         source "$conf_file" || exit ${E_NOT_FOUND-20}
     done

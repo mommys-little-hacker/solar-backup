@@ -3,7 +3,7 @@
 errorExit() {
     error_code=$1
 
-    if [ -f $lockfile ]
+    if [[ -f $lockfile ]]
     then
         rm -f $lockfile
     fi
