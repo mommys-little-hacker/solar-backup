@@ -24,14 +24,7 @@ backupFiles() {
         archive_name="${dir//'/'/_}.${date_suffix}.tar.gz"
         source "${app_dir}/backends/${files_backend}.sh"
 
-        if [[ "${split_enabled-false}" = "true" ]]
-        then
-            tar -cz "$dir" 2> /dev/null \
-                | split -b${split_chunk_size-4G} - $archive_name --filter="$stdin_conn" \
-                || return 1
-        else
-            tar -cz "$dir" 2> /dev/null | $stdin_conn || return 1
-        fi
+        GZIP=-9 tar -cz "$dir" 2> /dev/null | $stdin_conn || return 1
 
         if [[ ${PIPESTATUS[0]} != 0 ]]
             then

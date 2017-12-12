@@ -3,7 +3,12 @@
 # Requires following vars: archive_name
 
 # Common vars, must be present for every backend
-stdin_conn="eval cat > ${local_basedir%%/}/${FILE-${archive_name-backup}}"
+if [[ "${split_enabled-false}" = "true" ]]
+then
+    split -b${split_chunk_size-4G} - $archive_name --filter="eval cat > ${local_basedir%%/}/$FILE"
+else
+    stdin_conn="eval cat > ${local_basedir%%/}/${archive_name-backup}"
+fi
 
 uploadFile() {
     if [ $# -lt 1 ]
