@@ -3,7 +3,7 @@
 # Requires following vars: archive_name
 
 # Common vars, must be present for every backend
-stdin_conn="eval cat > ${local_basedir%%/}/${archive_name-backup}"
+stdin_conn="eval cat > ${local_basedir%%/}/${archive_name-${FILE-backup}}"
 
 uploadFile() {
     if [ $# -lt 1 ]
