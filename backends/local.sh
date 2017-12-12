@@ -5,8 +5,7 @@
 # Common vars, must be present for every backend
 if [[ "${split_enabled-false}" = "true" ]]
 then
-    stdin_conn="split -b${split_chunk_size-4G} - ${archive_name-backup} 
-        --filter=\"eval cat > ${local_basedir%%/}/\$FILE\""
+    stdin_conn="split -b${split_chunk_size-4G} - ${local_basedir%%/}/${archive_name-backup}"
 else
     stdin_conn="eval cat > ${local_basedir%%/}/${archive_name-backup}"
 fi
