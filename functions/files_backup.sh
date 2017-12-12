@@ -26,7 +26,9 @@ backupFiles() {
 
         if [[ "${split_enabled-false}" = "true" ]]
         then
-            tar -cz "$dir" 2> /dev/null | split -b${split_chunk_size-4G} - $archive_name --filter="$stdin_conn" || return 1
+            tar -cz "$dir" 2> /dev/null \
+                | split -b${split_chunk_size-4G} - $archive_name --filter="archive_name=$FILE $stdin_conn" \
+                || return 1
         else
             tar -cz "$dir" 2> /dev/null | $stdin_conn || return 1
         fi
