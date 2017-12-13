@@ -26,10 +26,7 @@ backupFiles() {
 
         GZIP=-9 tar -cz "$dir" 2> /dev/null | $stdin_conn || return 1
 
-        if [[ ${PIPESTATUS[0]} != 0 ]]
-            then
-            return 1
-        fi
+        if [[ ${PIPESTATUS[0]} > 1 ]]; then return 1; fi
     done
 
     logEvent "$MSG_FILES_FINISH"

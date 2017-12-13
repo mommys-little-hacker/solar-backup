@@ -21,3 +21,5 @@ MSG_DB_FAIL="DB backup failed"
 
 MSG_HOOKS_START="Executing hook"
 MSG_HOOKS_FAIL="Failed executing hook"
+
+MSG_MISC_FAIL="Unknown error"
