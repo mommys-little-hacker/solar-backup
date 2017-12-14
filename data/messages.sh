@@ -8,6 +8,7 @@ MSG_FILES_START="Starting file transfer"
 MSG_FILES_FINISH="File transfer finished"
 MSG_FILES_SKIP="Skipping files backup"
 MSG_FILES_FAIL="File transfer failed"
+MSG_FILES_WARN="WARNING: Non-zero exit status in backup command"
 
 MSG_CRON_START="Starting crontab backup"
 MSG_CRON_FINISH="Crontab backup finished"
