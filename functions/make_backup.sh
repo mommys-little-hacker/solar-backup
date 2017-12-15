@@ -2,6 +2,9 @@
 # This function outlines backup creation
 
 makeBackup() {
+    # Load configuration file
+    source ${app_dir%%/}/include/load_conf.sh || exit $E_MISC
+
     # Lock process or exit
     if [ -e $lockfile ]
     then
