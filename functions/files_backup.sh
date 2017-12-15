@@ -26,9 +26,11 @@ backupFiles() {
 
         GZIP=-9 tar -cz "$dir" 2> /dev/null | $stdin_conn
 
-        if [[ ${PIPESTATUS[0]} != 0 || ${PIPESTATUS[1]} != 0 ]]
+        pipestat=(${PIPESTATUS[@]})
+
+        if [[ ${pipestat[0]} != 0 || ${pipestat[1]} != 0 ]]
         then
-            logEvent "$MSG_FILES_WARN ${PIPESTATUS[@]}"
+            logEvent "$MSG_FILES_WARN ${pipestat[@]}"
         fi
     done
 
