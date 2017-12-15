@@ -24,7 +24,13 @@ backupFiles() {
         archive_name="${dir//'/'/_}.${date_suffix}.tar.gz"
         source "${app_dir}/backends/${files_backend}.sh"
 
-        GZIP=-9 tar -cz "$dir" 2> /dev/null | $stdin_conn
+        # If excludes are defined, set them up
+        if [[ ${#files_exclude[@]-0} > 0 ]]
+        then
+            excludes="${files_exclude[@]/#/--exclude=}"
+        fi
+
+        GZIP=-9 tar ${excludes-""} -cz "$dir" 2> /dev/null | $stdin_conn
 
         pipestat=(${PIPESTATUS[@]})
 
