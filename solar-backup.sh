@@ -1,7 +1,8 @@
 #!/bin/bash
 # Author: Maxim Vasilev <admin@qwertys.ru>
 # Description: Creates backup of a project. Main executable.
-# This specific file loads configuration
+# This specific file loads application and calls exrypoint
+# function.
 
 # Raise an error in case of unbound var
 set -u -o pipefail
