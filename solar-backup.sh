@@ -4,7 +4,9 @@
 # This specific file loads application and calls exrypoint
 # function.
 
-# Raise an error in case of unbound var
+# Raise an error in case of:
+# * unbound var
+# * any command in pipeline
 set -u -o pipefail
 
 ###

@@ -25,7 +25,7 @@ backupFiles() {
         source "${app_dir}/backends/${files_backend}.sh"
 
         # If excludes are defined, set them up
-        if [[ ${#files_exclude[@]-0} > 0 ]]
+        if [[ ${files_exclude[@]-""} != "" ]]
         then
             excludes="${files_exclude[@]/#/--exclude=}"
         fi
