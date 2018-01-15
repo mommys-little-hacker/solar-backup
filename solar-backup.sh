@@ -1,13 +1,16 @@
 #!/bin/bash
 # Author: Maxim Vasilev <admin@qwertys.ru>
 # Description: Creates backup of a project. Main executable.
-# This specific file loads configuration
+# This specific file loads application and calls exrypoint
+# function.
 
-# Raise an error in case of unbound var
+# Raise an error in case of:
+# * unbound var
+# * any command in pipeline
 set -u -o pipefail
 
 ###
-# Environment setup
+# Load application
 ###
 
 app_dir=${INSTALLDIR-"/opt/solar-backup"}
@@ -20,15 +23,6 @@ do
         source "$conf_file" || exit ${E_NOT_FOUND-20}
     done
 done
-
-if [[ ${CONFFILE-""} != "" && -r ${CONFFILE} ]]
-then
-    source $CONFFILE
-else
-    # Load global configuration and override it's values with user config
-    source "$conf_file_global" || exit ${E_NOT_FOUND-20}
-    if [ -r "$conf_file_user" ]; then source "$conf_file_user"; fi
-fi
 
 ###
 # This funtion checks args and starts requested action.

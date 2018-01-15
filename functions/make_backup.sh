@@ -2,6 +2,9 @@
 # This function outlines backup creation
 
 makeBackup() {
+    # Load configuration file
+    source ${app_dir%%/}/include/load_conf.sh || exit $E_MISC
+
     # Lock process or exit
     if [ -e $lockfile ]
     then
@@ -20,9 +23,9 @@ makeBackup() {
 
     runHook "${hooks_pre_start-}" || { rm $lockfile && return 1 ; }
 
-    backupFiles || { rm $lockfile && exit $E_FILES_FAILED ; }
-    backupDB || { rm $lockfile && exit $E_DB_FAILED ; }
-    backupCron || { rm $lockfile && exit $E_CRON_FAILED ; }
+    backupFiles || errorExit $E_FILES_FAILED "$MSG_FILES_FAIL"
+    backupDB || errorExit $E_DB_FAILED "$MSG_DB_FAIL"
+    backupCron || errorExit $E_CRON_FAILED "$MSG_CRON_FAIL"
 
     runHook "${hooks_post_end-}" || { rm $lockfile && return 1 ; }
 
