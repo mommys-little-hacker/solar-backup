@@ -33,6 +33,8 @@ backupDocker() {
         then
             logEvent "$MSG_DOCKER_WARN"
         fi
+
+        docker rmi $img
     done
 
     logEvent "$MSG_DOCKER_FINISH"
