@@ -20,6 +20,11 @@ MSG_DB_FINISH="DB backup finished"
 MSG_DB_SKIP="Skipping DB backup"
 MSG_DB_FAIL="DB backup failed"
 
+MSG_DOCKER_START="Starting Docker backup"
+MSG_DOCKER_FINISH="Docker backup finished"
+MSG_DOCKER_SKIP="Skipping docker backup"
+MSG_DOCKER_FAIL="docker backup failed"
+
 MSG_HOOKS_START="Executing hook"
 MSG_HOOKS_FAIL="Failed executing hook"
 
