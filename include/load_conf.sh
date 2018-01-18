@@ -1,3 +1,5 @@
+# This file loads application configuration
+
 if [[ ${CONFFILE-""} != "" && -r ${CONFFILE} ]]
 then
     source $CONFFILE
