@@ -2,9 +2,9 @@
 
 source $conf_file_default
 
-if [[ ${conf_file-""} != "" && -r ${conf_file} ]]
+if [[ ${override_file-""} != "" && -r ${override_file} ]]
 then
-    source $conf_file
+    source $override_file
 else
     # Load global configuration and override it's values with user config
     source "$conf_file_global" || exit ${E_NOT_FOUND-20}

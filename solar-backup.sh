@@ -14,6 +14,7 @@ set -u -o pipefail
 ###
 
 app_dir=${INSTALLDIR-"/opt/solar-backup"}
+override_file=${CONFFILE-""}
 
 # Load application global vars, consts and functions
 for conf_dir in data functions
