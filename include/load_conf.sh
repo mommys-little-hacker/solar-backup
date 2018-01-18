@@ -1,5 +1,7 @@
 # This file loads application configuration
 
+source $conf_file_default
+
 if [[ ${CONFFILE-""} != "" && -r ${CONFFILE} ]]
 then
     source $CONFFILE

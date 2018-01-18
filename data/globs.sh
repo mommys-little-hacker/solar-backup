@@ -1,5 +1,6 @@
 conf_file_global="/etc/solar-backup/solar-backup.conf"
 conf_file_user="${HOME}/.solar-backup"
+conf_file_default="$INSTALLDIR/include/solar-backup.conf"
 
 my_pid=$$
 key=`echo $USER $@ | md5sum | cut -d' ' -f1`
