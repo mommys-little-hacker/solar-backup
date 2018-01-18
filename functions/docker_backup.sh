@@ -29,7 +29,7 @@ backupDocker() {
         docker save $img | $stdin_conn
 
         pipestat="${PIPESTATUS[@]}"
-        if [[ ${pipestat[0]} != 0 && ${pipestat[1]} ]]
+        if [[ ${pipestat[0]} != 0 ]]
         then
             logEvent "$MSG_DOCKER_WARN"
         fi
