@@ -22,13 +22,13 @@ createDatabaseBackup() {
     if [[ ${pgdump_user-""} != "" ]]; then _pgdump_user="${pgdump_user/#/'-U '}"; fi
     if [[ ${pgdump_host-""} != "" ]]; then _pgdump_host="${pgdump_host/#/'-h '}"; fi
 
-    pgdump_cmd="PGPASSWORD=${pgdump_pass-} $pgdump_exe
+    pgdump_cmd="$pgdump_exe
         ${_pgdump_user-} ${_pgdump_host-} ${pgdump_db-}"
 
     archive_name="pg_${db}.${date_suffix}.sql.gz"
     source "${app_dir%%/}/backends/${files_backend}.sh"
 
-    $pgdump_cmd | $stdin_conn
+    PGPASSWORD="${pgdump_pass-}" $pgdump_cmd | $stdin_conn
 
     if [ ${PIPESTATUS[0]} -ne 0 ]
     then
