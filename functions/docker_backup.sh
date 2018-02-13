@@ -24,8 +24,16 @@ backupDocker() {
             return 1
         fi
 
+        if [[ docker_pause = true ]]
+        then
+            docker_commit_opts="--pause=false"
+        else
+            docker_commit_opts=""
+        fi
+
         source "${app_dir%%/}/backends/${files_backend}.sh"
-        docker commit --pause=false $container ${container}:${tag} || { logEvent "$MSG_DOCKER_WARN"; continue ; }
+        docker commit $docker_commit_opts $container ${container}:${tag} \
+        || { logEvent "$MSG_DOCKER_WARN"; continue ; }
         docker save $img | $stdin_conn
 
         pipestat="${PIPESTATUS[@]}"
