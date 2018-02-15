@@ -24,10 +24,19 @@ backupFiles() {
         archive_name="${dir//'/'/_}.${date_suffix}.tar.gz"
         source "${app_dir}/backends/${files_backend}.sh"
 
-        GZIP=-9 tar -cz "$dir" 2> /dev/null | $stdin_conn || return 1
-        if [[ ${PIPESTATUS[0]} != 0 ]]
-            then
-            return 1
+        # If excludes are defined, set them up
+        if [[ ${files_exclude[@]-""} != "" ]]
+        then
+            excludes="${files_exclude[@]/#/--exclude=}"
+        fi
+
+        GZIP=-9 tar ${excludes-""} -cz "$dir" 2> /dev/null | $stdin_conn
+
+        pipestat=(${PIPESTATUS[@]})
+
+        if [[ ${pipestat[0]} != 0 || ${pipestat[1]} != 0 ]]
+        then
+            logEvent "$MSG_FILES_WARN ${pipestat[@]}"
         fi
     done
 

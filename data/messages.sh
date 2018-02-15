@@ -8,6 +8,7 @@ MSG_FILES_START="Starting file transfer"
 MSG_FILES_FINISH="File transfer finished"
 MSG_FILES_SKIP="Skipping files backup"
 MSG_FILES_FAIL="File transfer failed"
+MSG_FILES_WARN="WARNING: Non-zero exit status in backup command"
 
 MSG_CRON_START="Starting crontab backup"
 MSG_CRON_FINISH="Crontab backup finished"
@@ -19,5 +20,13 @@ MSG_DB_FINISH="DB backup finished"
 MSG_DB_SKIP="Skipping DB backup"
 MSG_DB_FAIL="DB backup failed"
 
+MSG_DOCKER_START="Starting Docker backup"
+MSG_DOCKER_FINISH="Docker backup finished"
+MSG_DOCKER_SKIP="Skipping docker backup"
+MSG_DOCKER_FAIL="Docker backup failed"
+MSG_DOCKER_WARN="WARNING: Non-zero exit status in backup command"
+
 MSG_HOOKS_START="Executing hook"
 MSG_HOOKS_FAIL="Failed executing hook"
+
+MSG_MISC_FAIL="Unknown error"

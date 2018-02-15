@@ -2,6 +2,9 @@
 # This function lists contents of backup directory
 
 listBackups() {
+    # Load configuration file
+    source ${app_dir%%/}/include/load_conf.sh || exit $E_MISC
+
     exit_status=0
 
     if [[ -r ${app_dir%%/}/backends/"${files_backend-}".sh ]]
