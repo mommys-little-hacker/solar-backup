@@ -28,7 +28,7 @@ createDatabaseBackup() {
     archive_name="pg_${db}.${date_suffix}.sql.gz"
     source "${app_dir%%/}/backends/${files_backend}.sh"
 
-    PGPASSWORD="${pgdump_pass-}" $pgdump_cmd | $stdin_conn
+    PGPASSWORD="${pgdump_pass-}" $pgdump_cmd | gzip | $stdin_conn
 
     if [ ${PIPESTATUS[0]} -ne 0 ]
     then

@@ -30,7 +30,7 @@ createDatabaseBackup() {
     archive_name="mysql_${db}.${date_suffix}.sql.gz"
     source "${app_dir%%/}/backends/${files_backend}.sh"
 
-    $mysqldump_cmd | $stdin_conn
+    $mysqldump_cmd | gzip | $stdin_conn
 
     if [ ${PIPESTATUS[0]} -ne 0 ]
     then

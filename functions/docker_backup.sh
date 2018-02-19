@@ -16,7 +16,7 @@ backupDocker() {
     do
         tag="$date_suffix"
         img="${container}:${tag}"
-        archive_name="docker_$container.$date_suffix.tar"
+        archive_name="docker_$container.$date_suffix.tar.gz"
 
         if [[ ! -r ${app_dir%%/}/backends/${files_backend}.sh ]]
         then
@@ -34,7 +34,7 @@ backupDocker() {
         source "${app_dir%%/}/backends/${files_backend}.sh"
         docker commit $docker_commit_opts $container ${container}:${tag} \
         || { logEvent "$MSG_DOCKER_WARN"; continue ; }
-        docker save $img | $stdin_conn
+        docker save $img | gzip | $stdin_conn
 
         pipestat="${PIPESTATUS[@]}"
         if [[ ${pipestat[0]} != 0 ]]
