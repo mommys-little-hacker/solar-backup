@@ -3,7 +3,7 @@
 # Requires following vars: archive_name
 
 # Common vars, must be present for every backend
-stdin_conn="s3cmd -c \"$s3cmd_conf\" put - ${s3cmd_basedir%%/}/${archive_name-backup}"
+stdin_conn="s3cmd -c $s3cmd_conf put - ${s3cmd_basedir%%/}/${archive_name-backup}"
 
 uploadFile() {
     if [ $# -lt 1 ]
@@ -13,7 +13,7 @@ uploadFile() {
 
     file_path="$1"
 
-    s3cmd -c "$s3cmd_conf" put "$file_path" $s3cmd_basedir
+    s3cmd -c "$s3cmd_conf" put "$file_path" $s3cmd_basedir/
 }
 
 listDir() {
