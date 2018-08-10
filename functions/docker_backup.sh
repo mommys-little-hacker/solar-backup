@@ -2,7 +2,7 @@
 # Docker backend
 
 backupDocker() {
-    if [[ "$backup_docker" != "true" ]] 
+    if [[ "${backup_docker-false}" != "true" ]] 
     then
         logEvent "$MSG_DOCKER_SKIP"
         return 0
