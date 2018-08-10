@@ -1,5 +1,5 @@
 #!/bin/bash
-# Function for site backup
+# Function for files backup
 
 backupFiles() {
     if [[ "$backup_files" != "true" ]] 
@@ -30,7 +30,12 @@ backupFiles() {
             excludes="${files_exclude[@]/#/--exclude=}"
         fi
 
-        GZIP=-9 tar ${excludes-""} -cz "$dir" 2> /dev/null | $stdin_conn
+        GZIP=-9 tar \
+            ${excludes-""} \
+            -cz \
+            "$dir" \
+            2> /dev/null \
+            | $stdin_conn
 
         pipestat=(${PIPESTATUS[@]})
 
