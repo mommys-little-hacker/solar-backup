@@ -17,5 +17,5 @@ uploadFile() {
 }
 
 listDir() {
-    s3cmd -c "$s3cmd_conf" ls "${s3cmd_basedir}" || return 1
+    s3cmd -c "$s3cmd_conf" ls "${s3cmd_basedir%%/}/" || return 1
 } 
