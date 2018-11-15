@@ -3,7 +3,7 @@ conf_file_user="${HOME}/.solar-backup"
 conf_file_default="${app_dir}/include/solar-backup.conf"
 
 my_pid=$$
-key=`echo $USER $@ | md5sum | cut -d' ' -f1`
+key=`echo $UID $@ | md5sum | cut -d' ' -f1`
 lockfile="/tmp/solar-backup.${key}.lock"
 
 hooks_dir="/etc/solar-backup/hooks/"
